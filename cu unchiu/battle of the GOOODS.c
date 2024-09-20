@@ -3,7 +3,7 @@
 #include<windows.h>
 #include<stdbool.h>
 
-//adding a file where i can store the scores
+
 
 
 void firstChAttack();
