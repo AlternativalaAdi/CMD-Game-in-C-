@@ -3,9 +3,6 @@
 #include<windows.h>
 #include<stdbool.h>
 
-
-
-
 void firstChAttack();
 void secondChAttack();
 void firstWins();
@@ -18,7 +15,6 @@ void warlockInfo();
 void amazonInfo();
 void undeadInfo();
 
-
 int main()
 {   
     int option;
@@ -30,8 +26,9 @@ int main()
    while(true)
    {
    printf("\n1)Start\n");
-   printf("2)Classes\n");
-   printf("3)Exit\n");
+   printf("2)Campain(in development)\n");
+   printf("3)Classes\n");
+   printf("4)Exit\n");
    scanf("%d",&option);
    switch(option)
    {
@@ -40,6 +37,10 @@ int main()
         startGame();
         break;
     case 2:
+        system("cls");
+        campain();
+        break;
+    case 3:
         system("cls");
         printf("Select Class:\n");
         printf("1.Rogue\n");
@@ -77,7 +78,7 @@ int main()
         Sleep(d);
         system("cls");
         break;
-    case 3:
+    case 4:
         exit(0);
         break;
    }
@@ -138,7 +139,6 @@ printf("\n      /  \\      /  \\   ");
 
 void firstWins()
 {
-    system("COLOR 04");
     printf("\n");
 printf("      (;)       ");
 printf("\n      /|\\--->    ");
@@ -148,7 +148,6 @@ printf("\n      /  \\      |=====--\\|-O   ");
 
 void secondWins()
 {
-    system("COLOR 04");
     printf("\n");
 printf("                 (;) ");
 printf("\n             <---/|\\  ");
@@ -260,7 +259,7 @@ void startGame()
            
     default:
         printf("you suck!");
-        break;
+        exit(0);
    }
    
    printf("\nChoose your difficulty: \n");
@@ -279,20 +278,8 @@ void startGame()
     life2 = 65;
    }
     system("cls");
-    
-   printf("\n");
-    if(class<7)
-    {
-    for(int i=0;i<7;i++)
-    {
-        printf("*");
-        Sleep(k);
-    }
-    printf("START\n");
-    }
-    else{
-        printf(":()");
-    }
+    printf("\tSTART\n");
+
     Sleep(d);
     system("cls");
     moving1();
@@ -383,6 +370,187 @@ void startGame()
         
     }
     Sleep(l);
-    system("COLOR 07");
     
+}
+
+
+void campain()
+{
+    int class;
+   int d = 1300;
+   int f = 750;
+   int k = 5000;
+   int l = 3000;
+   int life2=35;
+   int add = 3;
+   int add2 = 1;
+    int life1;
+    int index;
+    int index2 = 35;
+    int punch;
+    int punch1 =5;
+    int kick;
+    int kick1 = 3;
+    int i=1;
+    int points=0;
+    printf("choose your class: ");
+   printf("\n1.Rogue\n2.Barbarian\n3.Mage\n4.Amazon\n5.Warlock\n6.Undead\n");
+   printf("Input your choice, warrior: ");
+   scanf("%d",&class);
+    system("cls");
+   switch(class)
+   {
+    case 1:
+        printf("you choosed Rogue");
+        index= 40;
+        punch = 15;
+        kick = 5;
+        break;
+    case 2:
+        printf("you choosed Barbarian");
+        index = 60;
+        punch = 8;
+        kick = 5;
+        break;
+    
+    case 3:
+        printf("you choosed Mage");
+        index = 45;
+        punch = 10;
+        kick = 7;
+        break;
+    case 4:
+        printf("you choosed Amazon");
+        index = 50;
+        punch = 10;
+        kick = 7;
+        break;
+        
+    case 5:
+        printf("you choosed Warlock");
+        index = 35;
+        punch = 10;
+        kick = 10;
+        break;
+        
+    case 6:
+        printf("you choosed Undead");
+        index = 20;
+        punch = 20;
+        kick = 15;
+        break;
+           
+    default:
+        printf("you suck!");
+        exit(0);
+   }
+   
+    while(true)
+    {
+        printf("\nLEVEL %d\n",i);
+        life1 = index;
+        life2 = index2 + add*i;
+        punch1 = punch1 + add2*i;
+        kick1 = kick1 + add2*i;
+        printf("YOU:      life  %d\t %d \t %d\t \n",life1,kick,punch);
+        printf("OPPONENT: life  %d\t %d \t %d\t",life2,kick1,punch1);
+        i++;
+        Sleep(k);
+
+        Sleep(d);
+        system("cls");
+        moving1();
+        Sleep(f);
+        system("cls");
+        moving2();
+        Sleep(f);
+        system("cls");
+        moving3();
+        Sleep(f);
+        system("cls");
+        moving4();
+        Sleep(f);
+        system("cls");
+        
+        int a;
+        int b;
+        while(life1 || life2 >0)
+        {
+
+            a = rand();
+            b = a%3;
+            
+            firstChAttack();
+            if(b==2)
+            {   printf("\nPUNCH!!");
+                life2 = life2 - punch;
+                printf("\nlife1 = %d\t life2 =%d",life1,life2);
+                    if(life2<=0)
+                {
+                    Sleep(d);
+                    system("cls");
+                    printf("\n\tcharacter 1 wins!!");
+                    points = points + 5;
+                    firstWins();
+                    break;
+                }
+            }
+            else
+            {   printf("\nKICK!");
+                life2 =  life2 - kick;
+                printf("\nlife1 = %d\t life2 =%d",life1,life2);
+                    if(life2<=0)
+                {
+                    Sleep(d);
+                    system("cls");
+                    printf("\n\tcharacter 1 wins!!");
+                    points = points + 5;
+                    firstWins();
+                    break;
+                }
+            }
+        Sleep(d);
+        system("cls");
+            secondChAttack();
+            a = rand();
+            b = a%3;
+            if(b==2)
+            {
+                printf("\n\t\t  PUNCH!!");
+                life1 = life1 - punch1;
+                printf("\nlife1 = %d\t life2 =%d",life1,life2);
+                    if(life1<=0)
+                {
+                    Sleep(d);
+                    system("cls");
+                    printf("\n\tcharacter 2 win!!\n");
+                    secondWins();
+                    printf("\nYour score: %d points",points);
+                    exit(0);
+                }
+            }
+            
+            else
+            {   printf("\n\t\t  KICK!");
+                life1 =  life1 - kick1;
+                printf("\nlife1 = %d\t life2 = %d",life1,life2);
+                    if(life1<=0)
+                {   
+                    Sleep(d);
+                    system("cls");
+                    secondWins();
+                    printf("\n\tcharacter 2 win!!\n");
+                    printf("\nYour score: %d points",points);
+                    exit(0);
+                }
+            }
+            Sleep(d);
+            system("cls");
+            
+            
+            
+        }
+        Sleep(l);
+    }
+
 }
